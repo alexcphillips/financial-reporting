@@ -8,7 +8,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "jest --coverage --runInBand",
-    "start": "node server/index"
+    "server": "node server/index"
   },
   "repository": {
     "type": "git",
