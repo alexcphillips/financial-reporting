@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "NODE_ENV=dev concurrently --kill-others \"npm run react\" \"npm run server\"",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
@@ -50,5 +51,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "proxy": "http://localhost:8000/",
+  "devDependencies": {
+    "concurrently": "^6.3.0"
   }
 }
