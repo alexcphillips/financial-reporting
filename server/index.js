@@ -1,6 +1,15 @@
 const path = require("path");
-if (process.NODE_ENV === "dev") {
-  require("dotenv").config({ path: path.join(__dirname, "../.dev.env") });
+
+function clearConsoleAndScrollBuffer() {
+  console.log("clear lines ******* ");
+  process.stdout.write("\u001b[3J\u001b[1J");
+  console.clear();
+}
+
+if (process.env.NODE_ENV === "dev") {
+  clearConsoleAndScrollBuffer();
+
+  require("dotenv").config({ path: path.join(__dirname, "../.env.dev") });
 } else {
   require("dotenv").config({ path: path.join(__dirname, "../.env") });
 }
@@ -19,7 +28,9 @@ const init = async () => {
   app.post("/invoice", insertInvoice);
 
   app.listen(process.env.PORT, () => {
-    console.log(`Server started SUCCESSFULLY`);
+    console.log(
+      `${process.env.NODE_ENV} server started on port ${process.env.PORT}`
+    );
   });
 };
 
