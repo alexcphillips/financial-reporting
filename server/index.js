@@ -1,15 +1,14 @@
 const path = require("path");
 
-function clearConsoleAndScrollBuffer() {
-  console.log("clear lines ******* ");
-  process.stdout.write("\u001b[3J\u001b[1J");
-  console.clear();
-}
+// function clearConsoleAndScrollBuffer() {
+//   process.stdout.write("\u001b[3J\u001b[1J");
+//   console.clear();
+// }
 
 if (process.env.NODE_ENV === "dev") {
-  clearConsoleAndScrollBuffer();
+  // clearConsoleAndScrollBuffer();
 
-  require("dotenv").config({ path: path.join(__dirname, "../.dev.env") });
+  require("dotenv").config({ path: path.join(__dirname, "../.env.dev") });
 } else {
   require("dotenv").config({ path: path.join(__dirname, "../.env") });
 }

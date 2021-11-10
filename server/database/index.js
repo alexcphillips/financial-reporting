@@ -9,6 +9,8 @@ const mongoConnect = async (options) => {
     useUnifiedTopology: true
   };
 
+  console.log(`connecting mongodb to ${process.env.MONGO_URI}`);
+  
   db = await MongoClient.connect(
     process.env.MONGO_URI,
     options || defaultOptions
