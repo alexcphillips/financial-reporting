@@ -9,7 +9,7 @@ function clearConsoleAndScrollBuffer() {
 if (process.env.NODE_ENV === "dev") {
   clearConsoleAndScrollBuffer();
 
-  require("dotenv").config({ path: path.join(__dirname, "../.env.dev") });
+  require("dotenv").config({ path: path.join(__dirname, "../.dev.env") });
 } else {
   require("dotenv").config({ path: path.join(__dirname, "../.env") });
 }
