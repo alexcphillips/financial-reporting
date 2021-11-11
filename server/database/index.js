@@ -1,20 +1,23 @@
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "../../.env") });
 const MongoClient = require("mongodb").MongoClient;
-let db = null;
+exports.db = null;
 
-const mongoConnect = async (options) => {
+exports.mongoConnect = async (options) => {
   const defaultOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true
   };
 
   console.log(`connecting mongodb to ${process.env.MONGO_URI}`);
-  
-  db = await MongoClient.connect(
+
+  const client = await MongoClient.connect(
     process.env.MONGO_URI,
     options || defaultOptions
   );
-};
 
-module.exports = { mongoConnect, db };
+  exports.db = client.db("financial-reporting");
+  console.log("db client cdreated");
+
+  return exports.db;
+};

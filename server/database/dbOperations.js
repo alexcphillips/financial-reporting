@@ -1,9 +1,9 @@
-const { db } = require("./index");
+const Mongo = require("./index");
 
-exports.dbFindCompanyById = (companyId) => {
-  db.collection("companies").findOne({ id: companyId });
+exports.dbFindCompanyById = async (companyId) => {
+  await Mongo.db.collection("companies").findOne({ id: companyId });
 };
 
-exports.insertInvoice = (...invoices) => {
-  db.collection("invoices").insertMany(invoices);
+exports.insertInvoices = async (invoices) => {
+  await Mongo.db.collection("invoices").insertMany(invoices);
 };

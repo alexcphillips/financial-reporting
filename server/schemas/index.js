@@ -7,9 +7,9 @@ const lineItemsSchema = {
     description: { type: "string" },
     amount: { type: "integer" },
     paid: { type: "boolean" },
-    companyId: { type: "integer" }
+    companyId: { type: "integer" || "null" }
   },
-  required: ["description", "amount", "companyId"],
+  required: ["description", "amount"],
   additionalProperties: true
 };
 

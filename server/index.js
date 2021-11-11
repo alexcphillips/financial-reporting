@@ -1,31 +1,26 @@
 const path = require("path");
-const { invoices: testInvoices } = require('./data/invoices');
-// function clearConsoleAndScrollBuffer() {
-//   process.stdout.write("\u001b[3J\u001b[1J");
-//   console.clear();
-// }
+const { plantSeeds } = require("./database/seeds");
+const { mongoConnect } = require("./database");
+const { insertInvoice, findAllInvoices, testGreeting } = require("./routes");
+const { clearConsole, isDev } = require("./utilities");
 
-if (process.env.NODE_ENV === "dev") {
-  // clearConsoleAndScrollBuffer();
-
+if (isDev) {
+  clearConsole();
   require("dotenv").config({ path: path.join(__dirname, "../.env.dev") });
 } else {
   require("dotenv").config({ path: path.join(__dirname, "../.env") });
 }
 
-const { mongoConnect } = require("./database/index");
-const { testGreeting, insertInvoice } = require("./routes");
 const express = require("express");
 const app = express();
 app.use(express.json());
 
 const init = async () => {
   await mongoConnect();
+  await plantSeeds();
 
   app.get("/", testGreeting);
-  app.get("/invoices", (req, res) => {
-    return res.json(testInvoices)
-  });
+  app.get("/invoices", findAllInvoices);
 
   app.post("/invoice", insertInvoice);
 
