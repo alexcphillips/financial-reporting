@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=dev concurrently --kill-others \"npm run server\" \"npm run react\"",
-    "react": "NODE_ENV=dev react-scripts start",
+    "react": "NODE_ENV=dev PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "jest --coverage --runInBand",
