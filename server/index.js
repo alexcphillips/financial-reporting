@@ -1,5 +1,5 @@
 const path = require("path");
-
+const { invoices: testInvoices } = require('./data/invoices');
 // function clearConsoleAndScrollBuffer() {
 //   process.stdout.write("\u001b[3J\u001b[1J");
 //   console.clear();
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "dev") {
   require("dotenv").config({ path: path.join(__dirname, "../.env") });
 }
 
-const { mongoConnect, db } = require("./database/index");
+const { mongoConnect } = require("./database/index");
 const { testGreeting, insertInvoice } = require("./routes");
 const express = require("express");
 const app = express();
@@ -23,6 +23,9 @@ const init = async () => {
   await mongoConnect();
 
   app.get("/", testGreeting);
+  app.get("/invoices", (req, res) => {
+    return res.json(testInvoices)
+  });
 
   app.post("/invoice", insertInvoice);
 

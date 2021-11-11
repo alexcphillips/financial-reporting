@@ -1,10 +1,23 @@
+import { useState, useEffect } from 'react';
 import { Outlet, useSearchParams } from "react-router-dom";
-import { getInvoices } from "../data";
 import { QueryNavLink } from "../queryNavLink";
+import axios from 'axios';
 
 export default function Invoices() {
-  let invoices = getInvoices();
   let [searchParams, setSearchParams] = useSearchParams();
+  const [invoices, setInvoices] = useState([]);
+
+  async function getInvoices () {
+    const result = await axios(
+      '/invoices',
+    );
+  
+    setInvoices(result.data);
+  }
+
+  useEffect(() => {
+    getInvoices();
+  }, [setInvoices]);
 
   return (
     <div style={{ display: "flex" }}>

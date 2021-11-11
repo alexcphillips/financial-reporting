@@ -25,6 +25,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "ajv": "^8.6.3",
+    "axios": "^0.24.0",
     "express": "^4.17.1",
     "history": "^5.1.0",
     "mongodb": "^4.1.4",
@@ -52,7 +53,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3002/",
+  "proxy": "http://localhost:3002",
   "devDependencies": {
     "concurrently": "^6.3.0"
   }

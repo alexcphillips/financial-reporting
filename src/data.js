@@ -31,14 +31,24 @@ let invoices = [
   }
 ];
 
-export function getInvoices() {
-  return invoices;
+export async function getInvoices() {
+  try {
+    const response = await fetch('/invoices')
+    return response.json();
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 }
 
 export function getInvoice(number) {
-  return invoices.find(
-    invoice => invoice.number === number
-  );
+  try {
+    return invoices.find(
+      invoice => invoice.number === number
+    );
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export function deleteInvoice(number) {
